@@ -13,9 +13,9 @@ prism_twist_angle=0;
 
 /* [Pyramid] */
 pyramid_visible=true;
-pyramid_radius=25;
+pyramid_radius=35;
 pyramid_height=60;
-pyramid_base_sides=6;
+pyramid_base_sides=4;
 
 /* [Sphere] */
 sphere_visible=true;
@@ -37,6 +37,15 @@ prism_triangle_base_height = 60;
 prism_triangle_base_width = 40;
 prism_triangle_base_depth = 30;
 
+/* [Cylinder] */
+cylinder_visible = true;
+cylinder_height = 60;
+cylinder_radius = 25;
+
+/* [Cone] */
+cone_visible = true;
+cone_height = 60;
+cone_radius = 25;
 
 module cuboid_def()
 {
@@ -166,10 +175,52 @@ module add_prism_triangle_base()
     }
 }
 
+module cylinder_def()
+{
+    cylinder(cylinder_height, cylinder_radius, cylinder_radius,$fn=fn);
+}
+
+module add_cylinder()
+{
+    if(cylinder_visible)
+    {
+        translate([cylinder_radius,0,0])
+        cylinder_def();
+        translate([cylinder_radius*2+offset,0,0])
+        children();
+    }
+    else
+    {
+        children();
+    }
+}
+
+module cone_def()
+{
+    cylinder(cone_height, cone_radius, $fn=fn);
+}
+
+module add_cone()
+{
+    if(cone_visible)
+    {
+        translate([cone_radius,0,0])
+        cone_def();
+        translate([cone_radius*2+offset,0,0])
+        children();
+    }
+    else
+    {
+        children();
+    }
+}
+
 
 add_prism()
 add_pyramid()
 add_sphere()
 add_tetrahedron()
 add_cuboid()
-add_prism_triangle_base();
+add_prism_triangle_base()
+add_cylinder()
+add_cone();

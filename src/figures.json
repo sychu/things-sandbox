@@ -1,31 +1,5 @@
 {
-    "parameterSets": {
-        "design default values": {
-            "cuboid_depth": "20",
-            "cuboid_height": "60",
-            "cuboid_visible": "true",
-            "cuboid_width": "45",
-            "fn": "100",
-            "offset": "10",
-            "prism_base_sides": "6",
-            "prism_height": "60",
-            "prism_radius": "25",
-            "prism_triangle_base_depth": "30",
-            "prism_triangle_base_height": "60",
-            "prism_triangle_base_visible": "true",
-            "prism_triangle_base_width": "40",
-            "prism_twist_angle": "0",
-            "prism_visible": "true",
-            "pyramid_base_sides": "6",
-            "pyramid_height": "60",
-            "pyramid_radius": "25",
-            "pyramid_visible": "true",
-            "sphere_radius": "25",
-            "sphere_visible": "true",
-            "tetrahedron_radius": "35",
-            "tetrahedron_visible": "true"
-        }
-    },
+    "parameterSets": "",
     "fileFormatVersion": "1",
     "parameterSets": ""
 }
