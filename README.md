@@ -1,2 +1,2 @@
 # things-sandbox
-things sandbox for 3d printer
+things sandbox for 3d printer.
