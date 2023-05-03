@@ -7,14 +7,14 @@ offset=10;
 /* [Prism] */
 prism_visible=true;
 prism_radius=25;
-prism_height=70;
+prism_height=60;
 prism_base_sides=6;
 prism_twist_angle=0;
 
 /* [Pyramid] */
 pyramid_visible=true;
 pyramid_radius=25;
-pyramid_height=70;
+pyramid_height=60;
 pyramid_base_sides=6;
 
 /* [Sphere] */
@@ -23,7 +23,41 @@ sphere_radius=25;
 
 /* [Tetrahedron] */
 tetrahedron_visible=true;
-tetrahedron_radius=30;
+tetrahedron_radius=35;
+
+/* [Cuboid] */
+cuboid_visible = true;
+cuboid_width = 45;
+cuboid_depth = 20;
+cuboid_height = 60;
+
+/* [Prism Triangle Base] */
+prism_triangle_base_visible = true;
+prism_triangle_base_height = 60;
+prism_triangle_base_width = 40;
+prism_triangle_base_depth = 30;
+
+
+module cuboid_def()
+{
+        cube([cuboid_width, cuboid_depth, cuboid_height]);
+}
+
+module add_cuboid()
+{
+    if(cuboid_visible)
+    {
+        translate([0,-cuboid_depth/2,0])
+        cuboid_def();
+        translate([cuboid_width+offset,0,0])
+        children();
+    }
+    else
+    {
+        children();
+    }
+    
+}
 
 module prism_def()
 {       
@@ -109,8 +143,33 @@ module add_tetrahedron()
     }
 }
 
+module prism_triangle_base_def()
+{
+    linear_extrude(height=prism_triangle_base_height)
+    {
+        polygon(points=[[0,0],[prism_triangle_base_width,0], [0,prism_triangle_base_depth]]);
+    }
+}
+
+module add_prism_triangle_base()
+{
+    if(prism_triangle_base_visible)
+    {
+        translate([0,-prism_triangle_base_depth/2,0])
+        prism_triangle_base_def();
+        translate([prism_triangle_base_width+offset,0,0])
+        children();
+    }
+    else
+    {
+        children();
+    }
+}
+
 
 add_prism()
 add_pyramid()
 add_sphere()
-add_tetrahedron();
+add_tetrahedron()
+add_cuboid()
+add_prism_triangle_base();
